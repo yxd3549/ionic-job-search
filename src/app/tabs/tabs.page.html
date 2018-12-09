@@ -3,28 +3,28 @@
   <ion-tab tab="home">
     <ion-router-outlet name="home"></ion-router-outlet>
   </ion-tab>
-  <ion-tab tab="about">
-    <ion-router-outlet name="about"></ion-router-outlet>
+  <ion-tab tab="skills">
+    <ion-router-outlet name="skills"></ion-router-outlet>
   </ion-tab>
-  <ion-tab tab="contact">
-    <ion-router-outlet name="contact"></ion-router-outlet>
+  <ion-tab tab="location">
+    <ion-router-outlet name="location"></ion-router-outlet>
   </ion-tab>
 
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar color="dark" slot="top">
 
     <ion-tab-button tab="home" href="/tabs/(home:home)">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
+      <ion-icon name="search"></ion-icon>
+      <ion-label>Traditional</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="about" href="/tabs/(about:about)">
-      <ion-icon name="information-circle"></ion-icon>
-      <ion-label>About</ion-label>
+    <ion-tab-button tab="skills" href="/tabs/(skills:skills)">
+      <ion-icon name="build"></ion-icon>
+      <ion-label>Skill-based</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="contact" href="/tabs/(contact:contact)">
-      <ion-icon name="contacts"></ion-icon>
-      <ion-label>Contact</ion-label>
+    <ion-tab-button tab="location" href="/tabs/(location:location)">
+      <ion-icon name="compass"></ion-icon>
+      <ion-label>Location-based</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>

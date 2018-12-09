@@ -4,13 +4,16 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-list>
-        <ion-item *ngFor="let item of response">
-            <ion-label></ion-label>
-            <div item-content>
-                {{item.artistName}}
-            </div>
+<ion-content padding>
+    <form [formGroup]="todo" (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label>Search</ion-label>
+            <ion-input required type="text" placeholder="Keyword"></ion-input>
         </ion-item>
-    </ion-list>
+        <ion-item>
+            <ion-label>Full Time</ion-label>
+            <ion-toggle color="success"></ion-toggle>
+        </ion-item>
+        <button ion-button type="submit">Submit</button>
+    </form>
 </ion-content>

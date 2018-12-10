@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HTTP} from '@ionic-native/http/ngx';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {MockApiService} from '../mock-api.service';
 
 @Component({
     selector: 'app-home',
@@ -9,21 +10,22 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class HomePage implements OnInit {
     private keyword_search_form: FormGroup;
-    private url = 'http://ganskop.com/proxy/http://api.dataatwork.org/v1/jobs/autocomplete?begins_with="software"';
-    response = [];
-    constructor(private http: HTTP, private formBuilder: FormBuilder) {
+    private url = 'https://jobs.github.com/positions.json?description=python&full_time=true&location=sf';
+    response;
+    constructor(private http: HTTP, private formBuilder: FormBuilder, private mockAPI: MockApiService) {
         this.keyword_search_form = this.formBuilder.group({
             search: ['', Validators.required],
         });
     }
 
-    logForm(){
+    logForm() {
         console.log(this.keyword_search_form.value);
     }
 
     ngOnInit() {
+        /*
         // this.http.setHeader( "*", "Authorization", "Bearer asdfasdfa" );
-        this.http.get(this.url, {}, {'Authorization': 'Bearer asdfasdfa'})
+        this.http.get(this.url, {}, {})
             .then(response => {
                 console.log('response: ', response);
                 const data = JSON.parse(response.data);
@@ -33,5 +35,7 @@ export class HomePage implements OnInit {
             .catch(error => {
                 console.log('error', error);
             });
+            */
+        this.response = this.mockAPI.getData();
     }
 }

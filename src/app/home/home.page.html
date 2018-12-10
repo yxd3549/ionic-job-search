@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <form [formGroup]="keyword_search_form" (ngSubmit)="logForm()">
         <ion-item>
             <ion-label>Search</ion-label>
-            <ion-input required type="text" placeholder="Keyword"></ion-input>
+            <ion-input required type="text" placeholder="Keyword" formControlName="search"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Full Time</ion-label>
-            <ion-toggle color="success"></ion-toggle>
+            <ion-toggle color="success" formControlName="full_time"></ion-toggle>
         </ion-item>
-        <button ion-button type="submit">Submit</button>
+        <ion-button padding color='success' type="submit">Submit</ion-button>
     </form>
 </ion-content>

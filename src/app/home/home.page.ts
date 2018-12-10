@@ -8,18 +8,18 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
     styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-    private todo: FormGroup;
+    private keyword_search_form: FormGroup;
     private url = 'http://ganskop.com/proxy/http://api.dataatwork.org/v1/jobs/autocomplete?begins_with="software"';
     response = [];
     constructor(private http: HTTP, private formBuilder: FormBuilder) {
-        this.todo = this.formBuilder.group({
-            title: ['', Validators.required],
-            description: [''],
+        this.keyword_search_form = this.formBuilder.group({
+            search: ['', Validators.required],
+            full_time: [false],
         });
     }
 
     logForm(){
-        console.log(this.todo.value);
+        console.log(this.keyword_search_form.value);
     }
 
     ngOnInit() {

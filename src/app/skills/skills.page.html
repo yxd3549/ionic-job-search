@@ -1,9 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Skill-based Search</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Skill-based Search</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+    <form [formGroup]="skill_search_form" (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label>Search</ion-label>
+            <ion-input required type="text" placeholder="Skill" formControlName="skill"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Full Time</ion-label>
+            <ion-toggle color="success" formControlName="full_time"></ion-toggle>
+        </ion-item>
+        <ion-button padding color='success' type="submit">Submit</ion-button>
+    </form>
 </ion-content>

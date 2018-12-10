@@ -7,13 +7,12 @@
 <ion-content padding>
     <form [formGroup]="skill_search_form" (ngSubmit)="logForm()">
         <ion-item>
-            <ion-label>Search</ion-label>
-            <ion-input required type="text" placeholder="Skill" formControlName="skill"></ion-input>
+            <ion-label>Skill</ion-label>
+            <ion-select formControlName="skill" [interfaceOptions]="customActionSheetOptions"
+                        interface="action-sheet">
+                <ion-select-option *ngFor="let skill of skills" value={{skill}}>{{skill}}</ion-select-option>
+            </ion-select>
         </ion-item>
-        <ion-item>
-            <ion-label>Full Time</ion-label>
-            <ion-toggle color="success" formControlName="full_time"></ion-toggle>
-        </ion-item>
-        <ion-button padding color='success' type="submit">Submit</ion-button>
+        <ion-button padding color='danger' type="submit">Submit</ion-button>
     </form>
 </ion-content>

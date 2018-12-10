@@ -14,7 +14,6 @@ export class HomePage implements OnInit {
     constructor(private http: HTTP, private formBuilder: FormBuilder) {
         this.keyword_search_form = this.formBuilder.group({
             search: ['', Validators.required],
-            full_time: [false],
         });
     }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {HTTP} from '@ionic-native/http/ngx';
 
 @Component({
   selector: 'app-location',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationPage implements OnInit {
 
-  constructor() { }
+    private location_search_form: FormGroup;
 
-  ngOnInit() {
-  }
+    constructor(private http: HTTP, private formBuilder: FormBuilder) {
+        this.location_search_form = this.formBuilder.group({
+            city: [''],
+            location: [false]
+        });
+    }
+
+    logForm(){
+        console.log(this.location_search_form.value);
+    }
+
+    ngOnInit() {
+    }
 
 }

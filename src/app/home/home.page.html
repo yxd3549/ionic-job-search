@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]="keyword_search_form" (ngSubmit)="logForm()">
+    <form [formGroup]="keyword_search_form" (ngSubmit)="handleForm()">
         <ion-item>
             <ion-label>Search</ion-label>
             <ion-input required type="text" placeholder="Keyword" formControlName="search"></ion-input>
@@ -15,10 +15,14 @@
 
     <ion-list *ngFor="let item of response">
             <ion-item>
-                <ion-avatar slot="start">
+                <ion-avatar slot="start" *ngIf="item.company_logo!==null;">
                     <img src={{item.company_logo}}>
                 </ion-avatar>
+                <ion-avatar slot="start" *ngIf="item.company_logo===null;">
+                    <img src="../../assets/img/na.png">
+                </ion-avatar>
                 <ion-label text-wrap>
+                    <h2>{{item.uuid}}</h2>
                     <h2>{{item.title}}</h2>
                     <h3>{{item.company}}</h3>
                     <p>{{item.location}}</p>

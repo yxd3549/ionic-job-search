@@ -24,10 +24,10 @@ export class HomePage implements OnInit {
 
     getJobs(keyword: string) {
         //const url = 'http://api.dataatwork.org/v1/skills/autocomplete?contains=%22java%22';
-        const url = 'https://jobs.github.com/positions.json?description=' + keyword + '&full_time=true&location=sf';
+        //const url = 'https://jobs.github.com/positions.json?description=' + keyword + '&full_time=true&location=sf';
+        const url = 'https://jobs.github.com/positions.json?description=' + keyword;
         this.http.get(url, {}, {'Authorization': 'Bearer asdfasdfa'})
             .then(response => {
-                console.log('response: ', response);
                 const data = JSON.parse(response.data);
                 this.response = data;
                 console.log('data: ', data);

@@ -14,20 +14,18 @@ export class LocationPage implements OnInit {
 
     constructor(private formBuilder: FormBuilder, private http: HTTP) {
         this.location_search_form = this.formBuilder.group({
-            city: [''],
-            location: [false]
+            city: ['', Validators.required]
         });
     }
 
     handleForm() {
+
         this.getJobsWithCity(this.location_search_form.value.city);
         console.log(this.location_search_form.value);
 
     }
 
     getJobsWithCity(location: string) {
-        //const url = 'http://api.dataatwork.org/v1/skills/autocomplete?contains=%22java%22';
-        //const url = 'https://jobs.github.com/positions.json?description=' + keyword + '&full_time=true&location=sf';
         const url = 'https://jobs.github.com/positions.json?location=' + location;
         this.http.get(url, {}, {'Authorization': 'Bearer asdfasdfa'})
             .then(response => {

@@ -5,14 +5,15 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-label text-wrap>
+        <p>
+            Search by location by entering the name of a city or state.
+        </p>
+    </ion-label>
     <form [formGroup]="location_search_form" (ngSubmit)="handleForm()">
         <ion-item>
             <ion-label>City</ion-label>
             <ion-input required type="text" placeholder="Example: Rochester" formControlName="city"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Use my current location</ion-label>
-            <ion-toggle color="warning" formControlName="location"></ion-toggle>
         </ion-item>
         <ion-button padding color='warning' type="submit">Submit</ion-button>
     </form>

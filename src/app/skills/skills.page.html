@@ -5,14 +5,42 @@
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]="skill_search_form" (ngSubmit)="logForm()">
+    <ion-label text-wrap>
+        <p>
+            Type a skill type and hit submit. You can then select from a refined list of skills to find more specific
+            jobs.
+        </p>
+    </ion-label>
+    <form [formGroup]="skill_search_form" (ngSubmit)="handleForm()">
         <ion-item>
-            <ion-label>Skill</ion-label>
+            <ion-label>Search for Skills</ion-label>
+            <ion-input required type="text" placeholder="Example: Java" formControlName="skillSearch"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="skills.length!==0;">
+            <ion-label>Select a Skill</ion-label>
             <ion-select formControlName="skill" [interfaceOptions]="customActionSheetOptions"
                         interface="action-sheet">
-                <ion-select-option *ngFor="let skill of skills" value={{skill}}>{{skill}}</ion-select-option>
+                <ion-select-option *ngFor="let skill of skills" value={{skill.normalized_skill_name}}>
+                    {{skill.normalized_skill_name}}
+                </ion-select-option>
             </ion-select>
         </ion-item>
         <ion-button padding color='danger' type="submit">Submit</ion-button>
+        <ion-list *ngFor="let item of response">
+            <ion-item>
+                <ion-avatar slot="start" *ngIf="item.company_logo!==null;">
+                    <img src={{item.company_logo}}>
+                </ion-avatar>
+                <ion-avatar slot="start" *ngIf="item.company_logo===null;">
+                    <img src="../../assets/img/na.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                    <h2>{{item.title}}</h2>
+                    <h3>{{item.company}}</h3>
+                    <p>{{item.location}}</p>
+                    <ion-anchor href={{item.url}}>View</ion-anchor>
+                </ion-label>
+            </ion-item>
+        </ion-list>
     </form>
 </ion-content>

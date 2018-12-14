@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Validators, FormBuilder, FormGroup} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {HTTP} from '@ionic-native/http/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 
@@ -8,7 +8,7 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
     templateUrl: './location.page.html',
     styleUrls: ['./location.page.scss'],
 })
-export class LocationPage implements OnInit {
+export class LocationPage {
 
     private location_search_form: FormGroup;
     private response;
@@ -20,6 +20,11 @@ export class LocationPage implements OnInit {
         });
     }
 
+    /**
+     * Calls the appropiate function based on the user's selection.
+     * If the user agreed to use their location, it will search using their lat and long
+     * Otherwise, it will use the provided city or state.
+     */
     handleForm() {
 
         if (this.location_search_form.value.location === true) {
@@ -30,6 +35,9 @@ export class LocationPage implements OnInit {
         }
     }
 
+    /**
+     * Gets the current lat and long and makes an API calls with those coordinates.
+     */
     getJobsWithLocation() {
         this.geolocation.getCurrentPosition().then((resp) => {
             const url = 'https://jobs.github.com/positions.json?lat=' + resp.coords.latitude + '&' + 'long=' + resp.coords.longitude;
@@ -48,6 +56,10 @@ export class LocationPage implements OnInit {
         });
     }
 
+    /**
+     * Uses a location name to make a call the to github jobs api
+     * @param location
+     */
     getJobsWithCity(location: string) {
         const url = 'https://jobs.github.com/positions.json?location=' + location;
         this.http.get(url, {}, {'Authorization': 'Bearer asdfasdfa'})
@@ -60,9 +72,4 @@ export class LocationPage implements OnInit {
                 console.log('error', error);
             });
     }
-
-    ngOnInit() {
-
-    }
-
 }

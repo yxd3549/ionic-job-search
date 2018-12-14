@@ -20,6 +20,10 @@ export class SkillsPage implements OnInit {
         });
     }
 
+    /**
+     * If a specific skill was selected, calls the github jobs api with every keyword in the skill
+     * If a general skill was entered, call the Open skills API to obtained more refined skills.
+     */
     handleForm() {
         this.getSkills(this.skill_search_form.value.skillSearch);
         if (this.skill_search_form.value.skill !== '') {
@@ -34,6 +38,10 @@ export class SkillsPage implements OnInit {
         console.log(this.skill_search_form.value);
     }
 
+    /**
+     * Calls the Open skills api to obtain a list of skills that contain the provided keyword.
+     * @param keyword
+     */
     getSkills(keyword: string) {
         const url = 'http://api.dataatwork.org/v1/skills/autocomplete?contains=%22' + keyword + '%22';
         this.http.get(url, {}, {'Authorization': 'Bearer asdfasdfa'})
@@ -47,6 +55,10 @@ export class SkillsPage implements OnInit {
             });
     }
 
+    /**
+     * Calls the github jobs api to retrieve data based on the provided keyword.
+     * @param keyword
+     */
     getJobs(keyword: string) {
         const url = 'https://jobs.github.com/positions.json?description=' + keyword;
         this.http.get(url, {}, {'Authorization': 'Bearer asdfasdfa'})

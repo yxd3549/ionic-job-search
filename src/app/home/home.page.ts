@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {MockApiService} from '../mock-api.service';
 import {HTTP} from '@ionic-native/http/ngx';
@@ -8,7 +8,7 @@ import {HTTP} from '@ionic-native/http/ngx';
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage {
     private keyword_search_form: FormGroup;
     response;
 
@@ -18,15 +18,20 @@ export class HomePage implements OnInit {
         });
     }
 
+    /**
+     * Sends keyword to the getJobs function to retrieve data.
+     */
     handleForm() {
         this.getJobs(this.keyword_search_form.value.search);
     }
 
+    /**
+     * Calls the github jobs api to retrieve data based on the provided keyword.
+     * @param keyword
+     */
     getJobs(keyword: string) {
-        //const url = 'http://api.dataatwork.org/v1/skills/autocomplete?contains=%22java%22';
-        //const url = 'https://jobs.github.com/positions.json?description=' + keyword + '&full_time=true&location=sf';
         const url = 'https://jobs.github.com/positions.json?description=' + keyword;
-        this.http.get(url, {}, {'Authorization': 'Bearer asdfasdfa'})
+        this.http.get(url, {}, {})
             .then(response => {
                 const data = JSON.parse(response.data);
                 this.response = data;
@@ -37,6 +42,4 @@ export class HomePage implements OnInit {
             });
     }
 
-    async ngOnInit() {
-    }
 }
